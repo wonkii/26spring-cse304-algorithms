@@ -4,6 +4,13 @@ def floyd2(n: int, W: List[List[int]]) -> List[List[int]]:
     P = [[-1] * (n) for _ in range(n)]
     D = W
     # Complete the code here
+    for i in range(n):
+        for k in range(n):
+            for m in range(n):
+                if(m == k):
+                    continue
+                D[k][m] = min(D[k][m], D[k][i] + D[i][m])
+                P[k][m] = m
     
     return D, P
 

@@ -5,3 +5,4 @@ def bin(n: int, k: int) -> int:
         return 1
     else:
         # Complete the code here
+        return bin(n-1, k) + bin(n-1, k-1)
