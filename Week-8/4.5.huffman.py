@@ -26,7 +26,19 @@ def huffman(n: int, s: List[str], f: List[int]) -> Node:
     heap: List[Tuple[int, Node]] = []
     for i in range(n):
         heappush(heap, (f[i], Node(s[i], f[i])))
-
     # Complete the code here
 
+    while(len(heap) > 1):
+        
+        p = heappop(heap)[1]
+        q = heappop(heap)[1]
+
+        r = Node('+', p.freq + q.freq)
+        r.left = p
+        r.right = q
+        r.freq = p.freq + q.freq
+
+        heappush(heap, (r.freq, r))
+
+    
     return heappop(heap)[1]
