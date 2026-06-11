@@ -8,6 +8,7 @@ class Item:
         self.profit: float = profit
         self.profit_per_weight: float = profit / weight
         
+
 def knapsack(n: int, W: float, w: List[float], p: List[float]) -> float:
     heap: List[Tuple[float, Item]] = []
     for i in range(n):
@@ -17,5 +18,15 @@ def knapsack(n: int, W: float, w: List[float], p: List[float]) -> float:
     total_weight: float = 0.0
 
     # Complete the code here
+    while heap and total_weight < W:
+        _, item = heappop(heap)
+        if total_weight + item.weight <= W:
+            maxprofit += item.profit
+            total_weight += item.weight
+        else:
+            r = W - total_weight
+            maxprofit += item.profit_per_weight * r
+            total_weight += r
+
 
     return maxprofit
